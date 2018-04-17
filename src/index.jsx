@@ -17,21 +17,30 @@ export function identity (parent, child) {
   return parent === child
 }
 
+const mapFunc = props => {
+  const {match, matchFunc} = props
+  return child => matchFunc(match, child.props.match)
+    ? child
+    : null
+}
+
 export class SimpleComponentRouter extends Component {
   state = {
     matched: null
   }
 
   static getDerivedStateFromProps (next, state) {
-    console.log('getting derived state')
-    const {match, matchFunc, children} = next
+    const {match, mapFunc, children, supersonic} = next
+    const {previousMatch} = state
+
+    if (supersonic && match === previousMatch) {
+      return null
+    }
+
     return {
       ...state,
-      matched: React.Children.map(children, child => {
-        return matchFunc(match, child.props.match)
-          ? child
-          : null
-      })
+      previousMatch: match,
+      matched: React.Children.map(children, mapFunc(next))
     }
   }
 
@@ -43,9 +52,12 @@ export class SimpleComponentRouter extends Component {
 SimpleComponentRouter.propTypes = {
   match: PropTypes.string.isRequired,
   matchFunc: PropTypes.func,
-  superMatchFunc: PropTypes.func
+  mapFunc: PropTypes.func,
+  supersonic: PropTypes.bool
 }
 
 SimpleComponentRouter.defaultProps = {
-  matchFunc: identity
+  matchFunc: identity,
+  mapFunc: mapFunc,
+  supersonic: false
 }

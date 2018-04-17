@@ -5,7 +5,7 @@ import {render} from 'react-dom'
 import {SimpleComponentRouter} from '../src/index.jsx'
 
 const Foo = props => (
-  <h1>Foo</h1>
+  <h1>{`Foo: ${props.str}`}</h1>
 )
 
 const Bar = props => (
@@ -14,7 +14,8 @@ const Bar = props => (
 
 class Switch extends Component {
   state = {
-    match: 'foo'
+    match: 'foo',
+    test: 'foo'
   }
 
   onClick = () => {
@@ -24,14 +25,22 @@ class Switch extends Component {
     }))
   }
 
+  onClickTwo = () => {
+    this.setState(state => ({
+      ...state,
+      test: state.test === 'foo' ? 'bar' : 'foo'
+    }))
+  }
+
   render () {
-    const {match} = this.state
+    const {match, test} = this.state
 
     return (
       <Fragment>
         <button onClick={this.onClick}>Toggle</button>
-        <SimpleComponentRouter match={match} supersonic>
-          <Foo match='foo' />
+        <button onClick={this.onClickTwo}>Another</button>
+        <SimpleComponentRouter match={match}>
+          <Foo match='foo' str={test} />
           <Bar match='bar' />
         </SimpleComponentRouter>
       </Fragment>
