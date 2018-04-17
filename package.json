@@ -1,0 +1,57 @@
+{
+  "name": "simple-component-router",
+  "version": "0.0.0",
+  "description": "Chooses children to render based on conditions",
+  "main": "lib",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "babel src --out-dir lib",
+    "watch": "babel --watch src --out-dir lib",
+    "start": "budo examples/string.jsx -t babelify --open --live"
+  },
+  "babel": {
+    "presets": "env",
+    "plugins": [
+      "transform-react-require",
+      "transform-react-jsx",
+      "transform-object-rest-spread",
+      "transform-class-properties"
+    ]
+  },
+  "browserify": {
+    "transform": [
+      "babelify"
+    ]
+  },
+  "standard": {
+    "parser": "babel-eslint"
+  },
+  "keywords": [
+    "router",
+    "conditional",
+    "react"
+  ],
+  "author": "Matt Styles",
+  "license": "MIT",
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-eslint": "^8.2.3",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-plugin-transform-react-jsx": "^6.24.1",
+    "babel-plugin-transform-react-require": "^1.0.1",
+    "babel-preset-env": "^1.6.1",
+    "babelify": "^8.0.0",
+    "browserify": "^16.2.0",
+    "budo": "^11.2.0",
+    "react": "^16.3.2",
+    "react-dom": "^16.3.2",
+    "standard": "^11.0.1",
+    "tape": "^4.9.0"
+  },
+  "peerDependencies": {
+    "prop-types": "^15.6.1",
+    "react": "^16.3.2",
+    "invariant": "^2.2.4"
+  }
+}
