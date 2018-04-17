@@ -4,35 +4,48 @@ import PropTypes from 'prop-types'
 import invariant from 'invariant'
 import {name} from '../package.json'
 
-const log = _ => `[${name}] ${_}`
+const append = _ => `[${name}] ${_}`
 
-const INCORRECT_MATCH_TYPES = 'Incorrect parameters'
+const INCORRECT_MATCH_TYPES = 'Incorrect parameter types'
 
-export function match (route, child) {
+export function identity (parent, child) {
   invariant(
-    typeof route === 'string' && typeof child === 'string',
-    log(INCORRECT_MATCH_TYPES)
+    typeof parent === 'string' && typeof child === 'string',
+    append(INCORRECT_MATCH_TYPES)
   )
 
-  return route === child
+  return parent === child
 }
 
 export class SimpleComponentRouter extends Component {
+  state = {
+    matched: null
+  }
+
+  static getDerivedStateFromProps (next, state) {
+    console.log('getting derived state')
+    const {match, matchFunc, children} = next
+    return {
+      ...state,
+      matched: React.Children.map(children, child => {
+        return matchFunc(match, child.props.match)
+          ? child
+          : null
+      })
+    }
+  }
+
   render () {
-    const {route, children} = this.props
-    return React.Children.map(children, child => {
-      return this.props.match(route, child.props.match)
-        ? child
-        : null
-    })
+    return this.state.matched
   }
 }
 
 SimpleComponentRouter.propTypes = {
-  route: PropTypes.string.isRequired,
-  match: PropTypes.func
+  match: PropTypes.string.isRequired,
+  matchFunc: PropTypes.func,
+  superMatchFunc: PropTypes.func
 }
 
 SimpleComponentRouter.defaultProps = {
-  match: match
+  matchFunc: identity
 }

@@ -14,23 +14,23 @@ const Bar = props => (
 
 class Switch extends Component {
   state = {
-    route: 'foo'
+    match: 'foo'
   }
 
   onClick = () => {
     this.setState(state => ({
       ...state,
-      route: state.route === 'foo' ? 'bar' : 'foo'
+      match: state.match === 'foo' ? 'bar' : 'foo'
     }))
   }
 
   render () {
-    const {route} = this.state
+    const {match} = this.state
 
     return (
       <Fragment>
         <button onClick={this.onClick}>Toggle</button>
-        <SimpleComponentRouter route={route}>
+        <SimpleComponentRouter match={match}>
           <Foo match='foo' />
           <Bar match='bar' />
         </SimpleComponentRouter>
