@@ -1,13 +1,14 @@
 {
   "name": "simple-component-router",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Chooses children to render based on conditions",
   "main": "lib",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "babel src --out-dir lib",
     "watch": "babel --watch src --out-dir lib",
-    "start": "budo examples/string.jsx -t babelify --open --live"
+    "start": "budo examples/string.jsx -t babelify --open --live",
+    "predeploy": "npm run build"
   },
   "babel": {
     "presets": "env",
