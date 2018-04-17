@@ -1,6 +1,6 @@
 {
   "name": "simple-component-router",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Chooses children to render based on conditions",
   "main": "lib",
   "scripts": {
