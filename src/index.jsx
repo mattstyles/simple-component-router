@@ -8,7 +8,7 @@ const append = _ => `[${name}] ${_}`
 
 const INCORRECT_MATCH_TYPES = 'Incorrect parameter types'
 
-export function identity (parent, child) {
+export function equality (parent, child) {
   invariant(
     typeof parent === 'string' && typeof child === 'string',
     append(INCORRECT_MATCH_TYPES)
@@ -57,7 +57,7 @@ SimpleComponentRouter.propTypes = {
 }
 
 SimpleComponentRouter.defaultProps = {
-  matchFunc: identity,
+  matchFunc: equality,
   mapFunc: mapFunc,
   supersonic: false
 }
