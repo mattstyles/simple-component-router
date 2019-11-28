@@ -50,7 +50,7 @@ export class SimpleComponentRouter extends Component {
 }
 
 SimpleComponentRouter.propTypes = {
-  match: PropTypes.string.isRequired,
+  match: PropTypes.any.isRequired,
   matchFunc: PropTypes.func,
   mapFunc: PropTypes.func,
   supersonic: PropTypes.bool
