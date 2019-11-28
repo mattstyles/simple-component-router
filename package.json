@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "babel src --out-dir lib",
     "watch": "babel --watch src --out-dir lib",
-    "start": "budo examples/string.jsx -t babelify --open --live",
+    "start": "budo examples/map.jsx -t babelify --open --live",
     "predeploy": "npm run build"
   },
   "babel": {
