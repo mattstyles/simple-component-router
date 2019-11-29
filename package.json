@@ -36,19 +36,19 @@
   "license": "MIT",
   "devDependencies": {
     "babel-cli": "^6.26.0",
-    "babel-eslint": "^8.2.3",
+    "babel-eslint": "^10.0.3",
     "babel-plugin-transform-class-properties": "^6.24.1",
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-plugin-transform-react-jsx": "^6.24.1",
     "babel-plugin-transform-react-require": "^1.0.1",
-    "babel-preset-env": "^1.6.1",
-    "babelify": "^8.0.0",
-    "browserify": "^16.2.0",
-    "budo": "^11.2.0",
-    "react": "^16.3.2",
-    "react-dom": "^16.3.2",
-    "standard": "^11.0.1",
-    "tape": "^4.9.0"
+    "babel-preset-env": "^1.7.0",
+    "babelify": "^10.0.0",
+    "browserify": "^16.5.0",
+    "budo": "^11.6.3",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0",
+    "standard": "^14.3.1",
+    "tape": "^4.11.0"
   },
   "peerDependencies": {
     "prop-types": "^15.6.1",
