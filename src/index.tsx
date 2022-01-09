@@ -1,7 +1,7 @@
 import * as React from 'react'
 import invariant from 'tiny-invariant'
 
-const name = 'simple-component-router'
+const name = 'tiny-component-router'
 const append = (_) => `[${name}] ${_}`
 
 const INCORRECT_MATCH_TYPES = 'Incorrect parameter types'
