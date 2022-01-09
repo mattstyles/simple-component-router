@@ -1,7 +1,7 @@
 import React, {Component, Fragment} from 'react'
 import {render} from 'react-dom'
 
-import {SimpleComponentRouter} from '../esm/index.js'
+import {TinyComponentRouter} from '../esm/index.js'
 
 const Style = () => (
   <style>{`
@@ -61,14 +61,10 @@ class Switch extends Component {
     return (
       <Fragment>
         <button onClick={this.onClick}>Toggle</button>
-        <SimpleComponentRouter
-          match={this.state}
-          matchFunc={match}
-          mapFunc={map}
-        >
+        <TinyComponentRouter match={this.state} matchFunc={match} mapFunc={map}>
           <Foo match='foo' />
           <Bar match='bar' />
-        </SimpleComponentRouter>
+        </TinyComponentRouter>
       </Fragment>
     )
   }

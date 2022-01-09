@@ -20,7 +20,7 @@ const mapFunc = (props) => {
   return (child) => (matchFunc(match, child.props.match) ? child : null)
 }
 
-export class SimpleComponentRouter extends React.Component {
+export class TinyComponentRouter extends React.Component {
   state = {
     matched: null,
   }

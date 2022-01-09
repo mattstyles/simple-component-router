@@ -1,7 +1,7 @@
 import React, {Component, Fragment} from 'react'
 import {render} from 'react-dom'
 
-import {SimpleComponentRouter} from '../esm/index.js'
+import {TinyComponentRouter} from '../esm/index.js'
 
 const Foo = (props) => <h1>{`Foo: ${props.str}`}</h1>
 
@@ -34,10 +34,10 @@ class Switch extends Component {
       <Fragment>
         <button onClick={this.onClick}>Toggle</button>
         <button onClick={this.onClickTwo}>Another</button>
-        <SimpleComponentRouter match={match}>
+        <TinyComponentRouter match={match}>
           <Foo match='foo' str={test} />
           <Bar match='bar' />
-        </SimpleComponentRouter>
+        </TinyComponentRouter>
       </Fragment>
     )
   }
