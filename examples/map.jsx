@@ -1,8 +1,7 @@
-
 import React, {Component, Fragment} from 'react'
 import {render} from 'react-dom'
 
-import {SimpleComponentRouter} from '../src/index.jsx'
+import {SimpleComponentRouter} from '../esm/index.js'
 
 const Style = () => (
   <style>{`
@@ -17,28 +16,20 @@ const Style = () => (
   `}</style>
 )
 
-const View = ({ children }) => (
-  <div className='view'>{children}</div>
-)
+const View = ({children}) => <div className='view'>{children}</div>
 
-const Foo = props => (
-  <h1>Foo</h1>
-)
+const Foo = (props) => <h1>Foo</h1>
 
-const Bar = props => (
-  <h1>Bar</h1>
-)
+const Bar = (props) => <h1>Bar</h1>
 
 /**
  * Maps over children wrapping them in a view component.
  * This can be essential for animating transitions.
  */
-const map = props => {
+const map = (props) => {
   const {match, matchFunc} = props
-  return child => {
-    return matchFunc(match, child.props.match)
-      ? <View>{child}</View>
-      : null
+  return (child) => {
+    return matchFunc(match, child.props.match) ? <View>{child}</View> : null
   }
 }
 
@@ -56,17 +47,17 @@ const match = (state, route) => {
 
 class Switch extends Component {
   state = {
-    route: 'foo'
+    route: 'foo',
   }
 
   onClick = () => {
-    this.setState(state => ({
+    this.setState((state) => ({
       ...state,
-      route: state.route === 'foo' ? 'bar' : 'foo'
+      route: state.route === 'foo' ? 'bar' : 'foo',
     }))
   }
 
-  render () {
+  render() {
     return (
       <Fragment>
         <button onClick={this.onClick}>Toggle</button>

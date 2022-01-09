@@ -1,30 +1,25 @@
-
 import React, {Component, Fragment} from 'react'
 import {render} from 'react-dom'
 
-import {SimpleComponentRouter} from '../src/index.jsx'
+import {SimpleComponentRouter} from '../esm/index.js'
 
-const Foo = props => (
-  <h1>Foo</h1>
-)
+const Foo = (props) => <h1>Foo</h1>
 
-const Bar = props => (
-  <h1>Bar</h1>
-)
+const Bar = (props) => <h1>Bar</h1>
 
 class Switch extends Component {
   state = {
-    match: 'foo'
+    match: 'foo',
   }
 
   onClick = () => {
-    this.setState(state => ({
+    this.setState((state) => ({
       ...state,
-      match: state.match === 'foo' ? 'bar' : 'foo'
+      match: state.match === 'foo' ? 'bar' : 'foo',
     }))
   }
 
-  render () {
+  render() {
     const {match} = this.state
 
     return (
@@ -42,7 +37,4 @@ class Switch extends Component {
 const el = document.createElement('el')
 document.body.appendChild(el)
 
-render(
-  <Switch />,
-  el
-)
+render(<Switch />, el)
