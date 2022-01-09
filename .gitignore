@@ -1,5 +1,9 @@
 lib
+esm
+dist
+.cache
 node_modules
-*.log
+*.log*
+.parcel-cache
 coverage
 .nyc_output
