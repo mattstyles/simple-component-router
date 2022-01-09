@@ -1,7 +1,7 @@
 import * as React from 'react'
 import invariant from 'tiny-invariant'
 
-const name = 'tiny-component-router'
+const name = 'simple-component-router'
 const append = (_) => `[${name}] ${_}`
 
 const INCORRECT_MATCH_TYPES = 'Incorrect parameter types'
@@ -20,7 +20,7 @@ const mapFunc = (props) => {
   return (child) => (matchFunc(match, child.props.match) ? child : null)
 }
 
-export class TinyComponentRouter extends React.Component {
+export class SimpleComponentRouter extends React.Component {
   state = {
     matched: null,
   }
