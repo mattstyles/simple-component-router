@@ -1,6 +1,6 @@
 {
   "name": "tiny-component-router",
-  "version": "0.3.2",
+  "version": "1.0.0-alpha.1",
   "description": "Chooses children to render based on conditions",
   "main": "lib/index.js",
   "module": "esm/index.js",
