@@ -30,7 +30,7 @@ export interface RouterProps<T = string, R = string> {
   matchFunc?: (a: T, b: R) => boolean
   mapFunc?: (props: RouterProps<T>) => (child: Route) => React.ReactNode
   supersonic?: boolean
-  children: Route[]
+  children: Route[] | Route
 }
 export interface RouterState<T = string> {
   matched: Route<T>
