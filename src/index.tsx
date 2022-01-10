@@ -2,11 +2,11 @@ import * as React from 'react'
 import invariant from 'tiny-invariant'
 
 const name = 'tiny-component-router'
-const append = (_) => `[${name}] ${_}`
+const append = (_: string) => `[${name}] ${_}`
 
 const INCORRECT_MATCH_TYPES = 'Incorrect parameter types'
 
-export function equality(parent, child) {
+export function equality(parent: string, child: string) {
   invariant(
     typeof parent === 'string' && typeof child === 'string',
     append(INCORRECT_MATCH_TYPES)
@@ -15,18 +15,38 @@ export function equality(parent, child) {
   return parent === child
 }
 
-const mapFunc = (props) => {
-  const {match, matchFunc} = props
-  return (child) => (matchFunc(match, child.props.match) ? child : null)
+const defaultMapFunc = (props: RouterProps) => {
+  const {match, matchFunc = equality} = props
+  return (child: Route) => (matchFunc(match, child.props.match) ? child : null)
 }
 
-export class TinyComponentRouter extends React.Component {
+export interface RouteProps<T = string> {
+  match: T
+  [others: string]: any
+}
+export type Route<T = string> = React.ReactElement<RouteProps<T>, any>
+export interface RouterProps<T = string, R = string> {
+  match: T
+  matchFunc?: (a: T, b: R) => boolean
+  mapFunc?: (props: RouterProps<T>) => (child: Route) => React.ReactNode
+  supersonic?: boolean
+  children: Route[]
+}
+export interface RouterState<T = string> {
+  matched: Route<T>
+  previousMatch: string | null
+}
+export class TinyComponentRouter<
+  T = string,
+  U = string
+> extends React.Component<RouterProps<T, U>, RouterState<T>> {
   state = {
     matched: null,
+    previousMatch: null,
   }
 
-  static getDerivedStateFromProps(next, state) {
-    const {match, mapFunc, children, supersonic} = next
+  static getDerivedStateFromProps(next: RouterProps, state: RouterState) {
+    const {match, mapFunc = defaultMapFunc, children, supersonic = false} = next
     const {previousMatch} = state
 
     if (supersonic && match === previousMatch) {
@@ -34,7 +54,6 @@ export class TinyComponentRouter extends React.Component {
     }
 
     return {
-      ...state,
       previousMatch: match,
       matched: React.Children.map(children, mapFunc(next)),
     }
@@ -44,16 +63,3 @@ export class TinyComponentRouter extends React.Component {
     return this.state.matched
   }
 }
-
-// SimpleComponentRouter.propTypes = {
-//   match: PropTypes.any.isRequired,
-//   matchFunc: PropTypes.func,
-//   mapFunc: PropTypes.func,
-//   supersonic: PropTypes.bool,
-// }
-//
-// SimpleComponentRouter.defaultProps = {
-//   matchFunc: equality,
-//   mapFunc: mapFunc,
-//   supersonic: false,
-// }

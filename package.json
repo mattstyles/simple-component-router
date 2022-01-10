@@ -55,6 +55,8 @@
     "@swc/core": "^1.2.127",
     "@swc/jest": "^0.2.15",
     "@types/jest": "^27.4.0",
+    "@types/react": "^17.0.38",
+    "@types/react-dom": "^17.0.11",
     "chokidar": "^3.5.2",
     "concurrently": "^7.0.0",
     "jest": "^27.4.7",
@@ -66,5 +68,8 @@
   },
   "peerDependencies": {
     "react": ">=16.8"
+  },
+  "dependencies": {
+    "tiny-invariant": "^1.2.0"
   }
 }

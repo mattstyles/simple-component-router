@@ -1,13 +1,23 @@
-import React, {Component, Fragment} from 'react'
+import * as React from 'react'
+import {Component, Fragment} from 'react'
 import {render} from 'react-dom'
 
-import {TinyComponentRouter} from '../esm/index.js'
+import type {RouteProps} from '../lib/index'
+import {TinyComponentRouter} from '../lib/index'
+// import {TinyComponentRouter} from '../src/index.tsx'
 
-const Foo = (props) => <h1>{`Foo: ${props.str}`}</h1>
+/**
+ * Example showing extra properties attached to children of the Router.
+ */
 
-const Bar = (props) => <h1>Bar</h1>
+interface FooProps extends RouteProps {
+  str: string
+}
+const Foo = (props: FooProps) => <h1>{`Foo: ${props.str}`}</h1>
 
-class Switch extends Component {
+const Bar = (_: RouteProps) => <h1>Bar</h1>
+
+class Switch extends Component<{}, {match: string; test: string}> {
   state = {
     match: 'foo',
     test: 'foo',
@@ -43,7 +53,7 @@ class Switch extends Component {
   }
 }
 
-const el = document.createElement('el')
+const el = document.createElement('div')
 document.body.appendChild(el)
 
 render(<Switch />, el)

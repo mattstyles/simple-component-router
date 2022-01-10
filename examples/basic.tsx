@@ -1,13 +1,18 @@
 import React, {Component, Fragment} from 'react'
 import {render} from 'react-dom'
 
-import {TinyComponentRouter} from '../esm/index.js'
+import type {RouteProps} from '../lib/index'
+import {TinyComponentRouter} from '../lib/index'
 
-const Foo = (props) => <h1>Foo</h1>
+/**
+ * Basic usage is to supply a string to the router match prop, and strings to each child match prop. Router will do the rest.
+ */
 
-const Bar = (props) => <h1>Bar</h1>
+const Foo = (_: RouteProps) => <h1>Foo</h1>
 
-class Switch extends Component {
+const Bar = (_: RouteProps) => <h1>Bar</h1>
+
+class Switch extends Component<{}, {match: string}> {
   state = {
     match: 'foo',
   }
@@ -25,7 +30,7 @@ class Switch extends Component {
     return (
       <Fragment>
         <button onClick={this.onClick}>Toggle</button>
-        <TinyComponentRouter match={match} supersonic>
+        <TinyComponentRouter match={match}>
           <Foo match='foo' />
           <Bar match='bar' />
         </TinyComponentRouter>
@@ -34,7 +39,7 @@ class Switch extends Component {
   }
 }
 
-const el = document.createElement('el')
+const el = document.createElement('div')
 document.body.appendChild(el)
 
 render(<Switch />, el)
